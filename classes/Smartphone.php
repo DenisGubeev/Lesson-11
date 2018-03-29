@@ -16,7 +16,15 @@ trait SmartphoneTrait
 }
 class Smartphone extends Product implements SmartphoneInterface
 {
-    protected $color;
-    protected $model;
+    private $memory;
+    public function setMemory($memory)
+    {
+      $this->memory = $memory;
+      return $this;
+    }
+    public function getMemory()
+    {
+      return $this->memory; 
+    }
 }
 ?>
