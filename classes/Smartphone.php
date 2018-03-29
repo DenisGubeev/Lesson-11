@@ -3,15 +3,15 @@ namespace Namespaces;
 
 interface SmartphoneInterface
 {
-    public function areYouRich();
+    public function getMemory();
 }
 trait SmartphoneTrait
 {
     // кхм-кхм
-    public function areYouRich()
+    public function setMemory()
     {
-        if ($this->model == 'android') return false;
-        return true;
+      $this->memory = $memory;
+      return $this;
     }
 }
 class Smartphone extends Product implements SmartphoneInterface
