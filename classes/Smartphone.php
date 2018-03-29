@@ -7,7 +7,6 @@ interface SmartphoneInterface
 }
 trait SmartphoneTrait
 {
-    // кхм-кхм
     public function setMemory()
     {
       $this->memory = $memory;
