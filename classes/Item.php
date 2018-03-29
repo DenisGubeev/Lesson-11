@@ -1,15 +1,22 @@
 <?php
 namespace Namespaces;
-class Item extends Product 
+
+interface SmartphoneInterface
 {
-    private $memory;
-    public function setMemory($memory)
+    public function areYouRich();
+}
+trait SmartphoneTrait
+{
+    // кхм-кхм
+    public function areYouRich()
     {
-      $this->memory = $memory;
-      return $this;
-    }
-    public function getMemory()
-    {
-      return $this->memory; 
+        if ($this->model == 'android') return false;
+        return true;
     }
 }
+class Smartphone extends Product implements SmartphoneInterface
+{
+    protected $color;
+    protected $model;
+}
+?>
