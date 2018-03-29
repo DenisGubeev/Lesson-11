@@ -4,48 +4,25 @@ namespace Namespaces;
 
 interface ProductInterface
 {
-    public function isFood();
-    public function discount();
-    public function deliveryPrice();
-    public function totalPrice();
+    public function __construct($title, $price);
+    public function getTitle();
+    public function getPrice();
 }
 abstract class Product implements ProductInterface
 {
-    protected $title;
-    protected $price;
-    protected $type;
-    protected $weight;
-   
-    public function __construct($title, $price, $type, $weight)
+    private $title;
+    private $price;
+    public function __construct($title, $price) 
     {
         $this->title = $title;
         $this->price = $price;
-        $this->type = $type;
-        $this->weight = $weight;
     }
-    
-    public function discount()
+    public function getTitle()
     {
-        $isFood = $this->isFood();
-        $foodWeight = $this->weight;
-        if (($isFood && $foodWeight > 10) || (!$isFood)) return $this->price*0.1;
-        return 0;
+        return $this->title;
     }
-    
-    public function isFood()
+    public function getPrice() 
     {
-        return $this->type == 'food';
+        return $this->price;
     }
-    // Цена доставки
-    public function deliveryPrice()
-    {
-        $discount = $this->discount();
-        if ($discount > 0) return 300;
-        return 250;
-    }
-    // Цена с учетом цены доставки и скидки
-    public function totalPrice()
-    {
-        return $this->price - $this->discount() + $this->deliveryPrice();
-    }
-?>
+}
