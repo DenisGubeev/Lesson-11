@@ -1,15 +1,35 @@
 <?php
+
 namespace Namespaces;
+
+interface CarInterface
+{
+    public function isHasOil();
+    public function setOilVolume($volume);
+}
 class Car extends Product implements CarInterface
 {
-    private $color;
-    public function setColor($color)
+    protected $color = 'blue';
+    protected $tankSize = 50;
+    protected $oilVolume;
+    public function setOilVolume($volume)
     {
-      $this->color = $color;
-      return $this;
+        if ($volume > $this->tankSize) {
+           $this->oilVolume = $this->tankSize;
+        }
+        if ($volume < 0) {
+            $this->oilVolume = 0;
+        }
+        if ($volume < $this->tankSize) {
+            $this->oilVolume = $volume;
+        }
     }
-    public function getColor()
+    public function isHasOil()
     {
-        return $this->color;
-    }	
+        if ($this->oilVolume/$this->tankSize < 0.1) {
+            return false;
+        }
+        return true;
+    }
 }
+?>
